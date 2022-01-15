@@ -33,4 +33,10 @@ describe Wordle do
 
     assert_equal [2, 1, 0, 0, 0], wordle.guess("tsacd")
   end
+  
+  it "handles duplicates correctly" do
+    wordle = Wordle.new("tests")
+
+    assert_equal [2, 2, 2, 1, 1], wordle.guess("tesst")
+  end
 end

@@ -5,9 +5,9 @@ class Wordle
 
   def guess(word)
     letters = word.to_s.upcase.split(//)
-    letters.map do |letter|
+    letters.each_with_index.map do |letter, i|
       if @answer.include?(letter)
-        @answer.index(letter) == letters.index(letter) ? 2 : 1
+        @answer[i] == letters[i] ? 2 : 1
       else
         0
       end
