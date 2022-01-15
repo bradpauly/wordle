@@ -3,6 +3,12 @@ require "./lib/wordle"
 
 describe Wordle do
   describe "#guess" do
+    it "returns an array with misses, matches, and hits" do
+      wordle = Wordle.new("train")
+
+      assert_equal [2, 0, 1, 1, 0], wordle.guess("think")
+    end
+
     it "returns an array of hits" do
       wordle = Wordle.new("tests")
 
@@ -12,7 +18,7 @@ describe Wordle do
     it "is case insensitive" do
       wordle = Wordle.new("tests")
 
-      assert_equal [2, 2, 2, 2, 2], wordle.guess("tests")
+      assert_equal [2, 2, 2, 2, 2], wordle.guess("TEsts")
     end
   end
 
@@ -28,12 +34,6 @@ describe Wordle do
     assert_equal [0, 1, 0, 0, 0], wordle.guess("atcda")
   end
 
-  it "returns an array with misses, matches, and hits" do
-    wordle = Wordle.new("tests")
-
-    assert_equal [2, 1, 0, 0, 0], wordle.guess("tsacd")
-  end
-  
   it "handles duplicates correctly" do
     wordle = Wordle.new("tests")
 
