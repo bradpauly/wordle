@@ -2,6 +2,7 @@ require "set"
 
 class Wordle
   class MaxGuessesExceeded < StandardError; end
+  class InvalidGuess < StandardError; end
 
   def initialize(answer)
     @answer = answer.to_s.upcase.split(//)
@@ -12,6 +13,8 @@ class Wordle
   end
 
   def guess(word)
+    raise InvalidGuess, "Invalid guess" if word.size != 5
+
     @guesses << word
     raise MaxGuessesExceeded, "Out of guesses" if @guesses.size > 6
 

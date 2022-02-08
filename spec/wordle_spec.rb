@@ -46,6 +46,12 @@ describe Wordle do
   
       assert_raises(Wordle::MaxGuessesExceeded) { wordle.guess("tesst") }
     end
+
+    it "raises when words are less than 5 characters" do
+      wordle = Wordle.new("tests")
+  
+      assert_raises(Wordle::InvalidGuess) { wordle.guess("tst") }
+    end
   end
 
   describe "#hits" do
